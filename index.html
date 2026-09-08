@@ -53,18 +53,15 @@
     .section-head p{margin:4px 0 0;color:var(--muted)}
     .legend{display:flex;gap:9px;flex-wrap:wrap}.legend span,.status{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
     .dot{width:9px;height:9px;border-radius:50%}.confirmed .dot,.dot.confirmed{background:#0b9e65}.ongoing .dot,.dot.ongoing{background:#2b82c9}.verify .dot,.dot.verify{background:#e39b22}
-    .filters{padding:16px;display:grid;grid-template-columns:1.5fr repeat(3,1fr) auto;gap:10px;position:sticky;top:10px;z-index:5}
+    .filters{padding:16px;display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:10px;position:sticky;top:10px;z-index:5}
     .control{border:1px solid var(--line);background:#fbfdfc;border-radius:13px;padding:11px 12px;color:var(--ink);min-width:0}
     .control:focus{outline:3px solid #b8ead3;border-color:var(--green)}
-    .save-toggle{border:0;background:var(--green);color:white;border-radius:13px;padding:10px 16px;font-weight:900;cursor:pointer;white-space:nowrap}
-    .save-toggle.active{background:#5f4aa3}
     .result-line{display:flex;justify-content:space-between;margin:13px 2px;color:var(--muted);font-size:13px}
     .trip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .trip-card{padding:18px;display:flex;flex-direction:column;min-height:340px;transition:.2s ease;position:relative;overflow:hidden}
     .trip-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
     .trip-card:before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--accent,var(--green))}
     .card-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px}.icon{width:47px;height:47px;display:grid;place-items:center;border-radius:15px;background:var(--tint,var(--mint));font-size:24px}
-    .save{width:39px;height:39px;border:1px solid var(--line);background:white;border-radius:50%;cursor:pointer;font-size:19px;color:#80958e}.save.saved{color:#e85b72;background:#fff1f3;border-color:#ffc7d0}
     .status{padding:5px 8px;border-radius:7px;background:#f1f6f3;color:var(--muted);width:max-content;margin-bottom:9px}
     .trip-card h3{font-size:20px;line-height:1.18;letter-spacing:-.025em;margin:0}.place{font-size:13px;color:var(--muted);margin:6px 0 9px}.earn-type{display:inline-flex;width:max-content;padding:5px 8px;border-radius:7px;background:#eef6f2;color:#176246;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.045em;margin-bottom:12px}.earn-type.fun{background:#fff3d8;color:#855913}.earn-type.steps{background:#edf1fb;color:#425f9c}
     .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}.pill{font-size:11px;font-weight:800;padding:5px 8px;background:#f3f7f5;border-radius:7px}
@@ -75,14 +72,14 @@
     .footnote{margin-top:24px;padding:20px;border-radius:18px;background:#edf7f2;color:#3f5d53;font-size:13px}.footnote strong{color:var(--ink)}
     .catalog-section{display:none}body.catalog-open .catalog-section,body.catalog-open .badge-board{display:block}body.catalog-open .note-card,body.catalog-open .planner-section,body.catalog-open .grade-nav{display:none}
     dialog{width:min(900px,calc(100% - 24px));max-height:88vh;border:0;border-radius:26px;padding:0;box-shadow:0 30px 100px rgba(0,0,0,.28);color:var(--ink)}dialog::backdrop{background:rgba(5,35,27,.7);backdrop-filter:blur(4px)}
-    .review-head{position:sticky;top:0;z-index:2;background:white;padding:22px 24px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:start}.review-head h2{margin:0;font-size:27px}.review-head p{margin:3px 0 0;color:var(--muted)}.close-dialog{border:1px solid var(--line);background:#f6faf8;width:40px;height:40px;border-radius:50%;font-size:22px;cursor:pointer}.review-body{padding:20px 24px 25px}.review-list{display:grid;gap:10px}.review-row{display:grid;grid-template-columns:44px 1.2fr .9fr .8fr;gap:12px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:15px}.review-row .mini-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--mint);font-size:21px}.review-row strong{line-height:1.2}.review-row small{display:block;color:var(--muted)}.review-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.review-actions button{border:1px solid var(--line);background:white;border-radius:11px;padding:10px 14px;font-weight:900;cursor:pointer}.review-actions .primary{background:var(--green);color:white;border-color:var(--green)}
+    .review-head{position:sticky;top:0;z-index:2;background:white;padding:22px 24px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:start}.review-head h2{margin:0;font-size:27px}.review-head p{margin:3px 0 0;color:var(--muted)}.close-dialog{border:1px solid var(--line);background:#f6faf8;width:40px;height:40px;border-radius:50%;font-size:22px;cursor:pointer}
     .badge-detail{padding:22px 24px 26px}.badge-detail h3{margin:20px 0 6px;font-size:16px}.badge-detail p{margin:0;color:var(--muted);line-height:1.6}.badge-context{display:inline-flex;margin-top:4px;padding:6px 9px;border-radius:8px;background:var(--mint);color:var(--green);font-size:12px;font-weight:900}.badge-actions{margin:8px 0 0;padding-left:20px;color:#405c53}.badge-actions li{margin:6px 0}.requirement-note{margin-top:20px!important;padding:14px 16px;border-radius:13px;background:#fff7e7;color:#705426!important}.badge-detail .catalog-link{margin-top:18px}
     body.presenting .hero{padding:30px 0 22px}body.presenting h1{font-size:42px}body.presenting .hero-panel,body.presenting .filters,body.presenting .result-line,body.presenting .footnote,body.presenting footer{display:none}body.presenting main{padding-top:22px}body.presenting .trip-card{min-height:300px}body.presenting .trip-card p{font-size:14px}body.presenting .section-head p{display:none}
     .empty{padding:50px;text-align:center;color:var(--muted);grid-column:1/-1}
     footer{padding:22px 0 40px;color:#6a7d76;font-size:12px;text-align:center}
     @media(max-width:900px){.hero-grid,.level-note{grid-template-columns:1fr}.hero-panel{max-width:520px}.filters{grid-template-columns:1fr 1fr;position:static}.filters .search{grid-column:1/-1}.trip-grid{grid-template-columns:repeat(2,1fr)}.timeline-grid{grid-template-columns:repeat(2,1fr)}.badge-types-grid{grid-template-columns:1fr}}
-    @media(max-width:620px){.shell{width:min(100% - 20px,1180px)}.hero{padding-top:38px}.trip-grid,.timeline-grid,.badge-groups{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.filters .search{grid-column:auto}.section-head{align-items:flex-start;flex-direction:column}.badge-board,.note-card{padding:19px}.trip-card{min-height:0}.review-row{grid-template-columns:44px 1fr}.review-row .review-meta{grid-column:2}.review-actions{flex-direction:column}.review-actions button{width:100%}}
-    @media print{.hero{padding:24px 0;background:#087a4d!important;-webkit-print-color-adjust:exact}.hero-panel,.grade-nav,.page-nav,.filters,.save{display:none}.trip-grid{grid-template-columns:repeat(2,1fr)}.trip-card{break-inside:avoid;box-shadow:none}.timeline{break-before:page}.shell{width:100%}}
+    @media(max-width:620px){.shell{width:min(100% - 20px,1180px)}.hero{padding-top:38px}.trip-grid,.timeline-grid,.badge-groups{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.filters .search{grid-column:auto}.section-head{align-items:flex-start;flex-direction:column}.badge-board,.note-card{padding:19px}.trip-card{min-height:0}}
+    @media print{.hero{padding:24px 0;background:#087a4d!important;-webkit-print-color-adjust:exact}.hero-panel,.grade-nav,.page-nav,.filters{display:none}.trip-grid{grid-template-columns:repeat(2,1fr)}.trip-card{break-inside:avoid;box-shadow:none}.timeline{break-before:page}.shell{width:100%}}
   </style>
 </head>
 <body>
@@ -111,7 +108,6 @@
         <button class="grade-btn" data-level="cadette">Cadette · 6–8</button>
       </nav>
       <div class="hero-tools">
-        <button class="hero-tool" id="reviewPlan" type="button">♥ Review saved plan</button>
         <button class="hero-tool" id="presentMode" type="button">▣ Presentation view</button>
         <button class="hero-tool" id="printPlan" type="button">↧ Print / save PDF</button>
       </div>
@@ -189,7 +185,6 @@
         <select class="control" id="area" aria-label="Filter by area"><option value="all">Any area</option><option value="near">Near Buford</option><option value="gwinnett">Gwinnett County</option><option value="metro">Metro Atlanta</option><option value="virtual">Virtual</option><option value="destination">Destination trip</option></select>
         <select class="control" id="type" aria-label="Filter by activity"><option value="all">Any activity</option><option value="art">Art & making</option><option value="outdoors">Outdoors & animals</option><option value="civics">Civics & leadership</option><option value="sports">Sports & fun patch</option><option value="multi">Multi-activity</option></select>
         <select class="control" id="cost" aria-label="Filter by cost"><option value="all">Any price</option><option value="free">Free / likely free</option><option value="15">$15 or less</option><option value="40">$40 or less</option></select>
-        <button class="save-toggle" id="savedOnly" type="button">♡ Saved only</button>
       </div>
       <div class="result-line"><span id="resultCount"></span><span>Prices can change—open the source before collecting money.</span></div>
       <div class="trip-grid" id="tripGrid"></div>
@@ -216,10 +211,6 @@
   <dialog id="badgeDialog">
     <div class="review-head"><div><h2 id="badgeDialogTitle">Badge details</h2><p id="badgeDialogSubtitle"></p></div><button class="close-dialog" id="closeBadge" aria-label="Close badge details">×</button></div>
     <div class="badge-detail"><span class="badge-context" id="badgeDialogCategory"></span><h3>What this badge explores</h3><p id="badgeDialogAbout"></p><h3>Ways to work on it</h3><ul class="badge-actions" id="badgeDialogActions"></ul><p class="requirement-note"><strong>Planning note:</strong> This is a plain-language preview, not the official step checklist. Before awarding the badge, use the current badge booklet or Volunteer Toolkit to confirm and complete every level-specific requirement.</p><a class="catalog-link" href="https://www.girlscouts.org/en/members/for-girl-scouts/badges-journeys-awards/badge-explorer.html" target="_blank" rel="noopener">Open the official Badge Explorer ↗</a></div>
-  </dialog>
-  <dialog id="reviewDialog">
-    <div class="review-head"><div><h2>Troop trip shortlist</h2><p>Your saved choices stay here when you close and reopen this page.</p></div><button class="close-dialog" id="closeReview" aria-label="Close review">×</button></div>
-    <div class="review-body"><div class="review-list" id="reviewList"></div><div class="review-actions"><button id="clearSaved" type="button">Clear shortlist</button><button id="printReview" class="primary" type="button">Print this plan</button></div></div>
   </dialog>
   <footer><div class="shell">Updated September 8, 2026 · Drive-area labels are planning guides, not traffic estimates.</div></footer>
 
@@ -301,7 +292,6 @@
     const BROWNIE_ONLY_BADGES = new Set(['Outdoor Art Creator','Eco Friend','Potter','Fair Play']);
 
     let activeLevel='all';
-    const saved=new Set(JSON.parse(localStorage.getItem('gs-trip-saves')||'[]'));
     const $=s=>document.querySelector(s);
     const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
     const LEVEL_NAMES={daisy:'Daisy · K–1',junior:'Junior · Grades 4–5',cadette:'Cadette · Grades 6–8'};
@@ -337,25 +327,18 @@
     function catalogMarkup(level){const groups=BADGE_CATALOG[level];const extra=level==='daisy'?' + 10 Daisy petals':'';return `<section class="catalog-level"><div class="catalog-level-head"><h3>${esc(LEVEL_NAMES[level])}</h3><span>${badgeCount(level)} badges${extra}</span></div><div class="badge-groups">${groups.map(g=>`<div class="badge-group ${g.award?'awards':''}"><h4>${esc(g.category)}</h4><div class="badge-group-list">${g.badges.map(b=>`<button class="badge-chip" type="button" data-badge="${esc(b)}" data-level="${level}" data-category="${esc(g.category)}">${esc(b)}</button>`).join('')}</div></div>`).join('')}</div></section>`}
     function renderBadges(){const l=LEVELS[activeLevel];$('#levelNoteTitle').textContent=l.noteTitle;$('#levelNoteCopy').textContent=l.noteCopy;$('#levelTitle').textContent='Complete official badge catalog';$('#levelCopy').textContent='Tap any Daisy, Junior, or Cadette badge for a plain-language explanation and activity ideas';$('#badgeCloud').innerHTML=['daisy','junior','cadette'].map(catalogMarkup).join('')}
     function withinCost(t,filter){if(filter==='all')return true;if(filter==='free')return t.price===0;return t.price<=Number(filter)}
-    function filtered(){const q=$('#search').value.trim().toLowerCase(),area=$('#area').value,type=$('#type').value,cost=$('#cost').value,only=$('#savedOnly').classList.contains('active');return trips.filter(t=>(activeLevel==='all'||t.levels.includes(activeLevel))&&(area==='all'||t.area===area)&&(type==='all'||t.type===type)&&withinCost(t,cost)&&(!only||saved.has(t.id))&&(!q||[t.title,t.place,t.summary,t.why,...t.badges].join(' ').toLowerCase().includes(q)))}
-    function card(t){const earning=EARNING[t.id]||['Possible badge steps','steps'];const badges=t.badges.filter(b=>!BROWNIE_ONLY_BADGES.has(b));return `<article class="trip-card" style="--accent:${t.accent};--tint:${t.tint}"><div class="card-top"><div class="icon">${t.icon}</div><button class="save ${saved.has(t.id)?'saved':''}" data-save="${t.id}" aria-label="${saved.has(t.id)?'Remove from':'Save to'} plan">${saved.has(t.id)?'♥':'♡'}</button></div><span class="status ${t.status}"><i class="dot"></i>${esc(t.statusText)}</span><h3>${esc(t.title)}</h3><div class="place">${esc(t.place)}</div><span class="earn-type ${earning[1]}">${esc(earning[0])}</span><div class="meta"><span class="pill">📅 ${esc(t.date)}</span><span class="pill">💵 ${esc(t.priceText)}</span></div><p>${esc(t.summary)}</p><p class="why"><strong>Badge fit:</strong> ${esc(t.why)}</p><div class="meta">${badges.slice(0,4).map(b=>`<span class="pill">${esc(b)}</span>`).join('')}</div><div class="card-actions"><a href="${esc(t.url)}" target="_blank" rel="noopener">Open details ↗</a><small>${esc(t.source)}</small></div></article>`}
-    function render(){renderBadges();const list=filtered();$('#resultCount').textContent=`Showing ${list.length} of ${trips.length} ideas`;$('#tripGrid').innerHTML=list.length?list.map(card).join(''):'<div class="empty"><strong>No trips match those filters.</strong><br>Try a higher budget, another area, or clear the search.</div>';document.querySelectorAll('[data-save]').forEach(b=>b.addEventListener('click',()=>{saved.has(b.dataset.save)?saved.delete(b.dataset.save):saved.add(b.dataset.save);localStorage.setItem('gs-trip-saves',JSON.stringify([...saved]));render()}))}
-    function renderReview(){const list=trips.filter(t=>saved.has(t.id));$('#reviewList').innerHTML=list.length?list.map(t=>`<div class="review-row"><div class="mini-icon">${t.icon}</div><div><strong>${esc(t.title)}</strong><small>${esc(t.place)}</small></div><div class="review-meta"><strong>${esc(t.date)}</strong><small>${esc(t.priceText)}</small></div><div class="review-meta"><strong>${esc(t.badges.slice(0,2).join(' + '))}</strong><small>Badge connection</small></div></div>`).join(''):'<div class="empty"><strong>Your shortlist is empty.</strong><br>Select the heart on any trip card, then return here to compare choices.</div>'}
+    function filtered(){const q=$('#search').value.trim().toLowerCase(),area=$('#area').value,type=$('#type').value,cost=$('#cost').value;return trips.filter(t=>(activeLevel==='all'||t.levels.includes(activeLevel))&&(area==='all'||t.area===area)&&(type==='all'||t.type===type)&&withinCost(t,cost)&&(!q||[t.title,t.place,t.summary,t.why,...t.badges].join(' ').toLowerCase().includes(q)))}
+    function card(t){const earning=EARNING[t.id]||['Possible badge steps','steps'];const badges=t.badges.filter(b=>!BROWNIE_ONLY_BADGES.has(b));return `<article class="trip-card" style="--accent:${t.accent};--tint:${t.tint}"><div class="card-top"><div class="icon">${t.icon}</div></div><span class="status ${t.status}"><i class="dot"></i>${esc(t.statusText)}</span><h3>${esc(t.title)}</h3><div class="place">${esc(t.place)}</div><span class="earn-type ${earning[1]}">${esc(earning[0])}</span><div class="meta"><span class="pill">📅 ${esc(t.date)}</span><span class="pill">💵 ${esc(t.priceText)}</span></div><p>${esc(t.summary)}</p><p class="why"><strong>Badge fit:</strong> ${esc(t.why)}</p><div class="meta">${badges.slice(0,4).map(b=>`<span class="pill">${esc(b)}</span>`).join('')}</div><div class="card-actions"><a href="${esc(t.url)}" target="_blank" rel="noopener">Open details ↗</a><small>${esc(t.source)}</small></div></article>`}
+    function render(){renderBadges();const list=filtered();$('#resultCount').textContent=`Showing ${list.length} of ${trips.length} ideas`;$('#tripGrid').innerHTML=list.length?list.map(card).join(''):'<div class="empty"><strong>No trips match those filters.</strong><br>Try a higher budget, another area, or clear the search.</div>'}
     function setPage(page){const catalog=page==='catalog';document.body.classList.toggle('catalog-open',catalog);document.querySelectorAll('.page-tab').forEach(b=>{const active=b.dataset.page===page;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active))});window.scrollTo({top:document.querySelector('main').offsetTop-12,behavior:'smooth'})}
     document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>setPage(b.dataset.page)));
     document.querySelectorAll('.grade-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.grade-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeLevel=b.dataset.level;render()}));
     ['search','area','type','cost'].forEach(id=>$('#'+id).addEventListener(id==='search'?'input':'change',render));
-    $('#savedOnly').addEventListener('click',e=>{e.currentTarget.classList.toggle('active');e.currentTarget.textContent=e.currentTarget.classList.contains('active')?'♥ Saved trips':'♡ Saved only';render()});
     $('#badgeCloud').addEventListener('click',e=>{const badge=e.target.closest('[data-badge]');if(!badge)return;const guide=badgeGuide(badge.dataset.badge,badge.dataset.category);$('#badgeDialogTitle').textContent=badge.dataset.badge;$('#badgeDialogSubtitle').textContent=LEVEL_NAMES[badge.dataset.level];$('#badgeDialogCategory').textContent=badge.dataset.category;$('#badgeDialogAbout').textContent=guide.about;$('#badgeDialogActions').innerHTML=guide.actions.map(action=>`<li>${esc(action)}</li>`).join('');$('#badgeDialog').showModal()});
     $('#closeBadge').addEventListener('click',()=>$('#badgeDialog').close());
     $('#badgeDialog').addEventListener('click',e=>{if(e.target===$('#badgeDialog'))$('#badgeDialog').close()});
-    $('#reviewPlan').addEventListener('click',()=>{renderReview();$('#reviewDialog').showModal()});
-    $('#closeReview').addEventListener('click',()=>$('#reviewDialog').close());
-    $('#reviewDialog').addEventListener('click',e=>{if(e.target===$('#reviewDialog'))$('#reviewDialog').close()});
-    $('#clearSaved').addEventListener('click',()=>{if(confirm('Remove every trip from the saved shortlist?')){saved.clear();localStorage.setItem('gs-trip-saves','[]');renderReview();render()}});
     $('#presentMode').addEventListener('click',e=>{document.body.classList.toggle('presenting');const on=document.body.classList.contains('presenting');e.currentTarget.textContent=on?'× Exit presentation':'▣ Presentation view';if(on)window.scrollTo({top:0,behavior:'smooth'})});
     $('#printPlan').addEventListener('click',()=>window.print());
-    $('#printReview').addEventListener('click',()=>window.print());
     render();
   </script>
 </body>
