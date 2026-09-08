@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Girl Scout Badge + Trip Planner | Buford, Georgia</title>
+  <style>
+    :root {
+      --ink:#17372f; --muted:#60756e; --green:#087a4d; --green-2:#0f9d68;
+      --mint:#e7f7ef; --cream:#fffaf0; --peach:#ffeadc; --gold:#f6bd46;
+      --purple:#6653a6; --blue:#dff3f8; --line:#dce8e2; --card:#ffffff;
+      --shadow:0 18px 55px rgba(17,74,57,.10); --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#f7fbf8;color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,input,select{font:inherit}
+    a{color:inherit}
+    .shell{width:min(1180px,calc(100% - 32px));margin:auto}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(125deg,#073f32 0%,#087a4d 58%,#12a772 100%);color:white;padding:54px 0 34px}
+    .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.16)}
+    .hero:before{width:430px;height:430px;right:-120px;top:-190px}.hero:after{width:260px;height:260px;right:160px;bottom:-190px}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.14);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    h1{font-size:clamp(34px,5vw,64px);line-height:.98;letter-spacing:-.055em;max-width:760px;margin:20px 0 18px}
+    .hero p{max-width:690px;font-size:17px;color:#ddf7eb;margin:0}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.5fr .75fr;gap:32px;align-items:end}
+    .hero-panel{background:white;color:var(--ink);padding:20px;border-radius:22px;box-shadow:var(--shadow)}
+    .hero-panel .date{color:var(--green);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+    .hero-panel strong{display:block;font-size:21px;margin:5px 0}.hero-panel small{color:var(--muted)}
+    .grade-nav{display:flex;gap:10px;overflow:auto;padding:18px 0 5px;scrollbar-width:none}
+    .grade-btn{border:1px solid rgba(255,255,255,.28);color:white;background:rgba(255,255,255,.08);padding:10px 16px;border-radius:999px;white-space:nowrap;cursor:pointer;font-weight:800}
+    .grade-btn:hover,.grade-btn.active{background:white;color:var(--green);border-color:white}
+    .hero-tools{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}.hero-tool{border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.1);color:white;border-radius:11px;padding:9px 12px;font-weight:800;cursor:pointer}.hero-tool:hover{background:white;color:var(--green)}
+    .page-nav{display:inline-flex;gap:5px;margin-top:22px;padding:5px;background:rgba(0,0,0,.16);border-radius:14px}.page-tab{border:0;border-radius:10px;padding:10px 15px;background:transparent;color:#dff7eb;font-weight:900;cursor:pointer}.page-tab.active{background:white;color:var(--green)}
+    main{padding:34px 0 70px}
+    .level-note{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:30px}
+    .note-card,.badge-board,.filters,.trip-card,.timeline,.empty,.badge-types,.overlap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 28px rgba(17,74,57,.06)}
+    .note-card{padding:24px;background:linear-gradient(135deg,var(--cream),#fff)}
+    .note-card .big{font-size:30px;font-weight:900;letter-spacing:-.04em;display:block}.note-card p{margin:4px 0 0;color:var(--muted)}
+    .catalog-jump{display:inline-block;margin-top:13px;border:0;border-radius:10px;background:var(--green);color:white;padding:9px 12px;font-weight:900;cursor:pointer}.catalog-jump:hover{background:#056640}
+    .badge-board{padding:24px;display:none}
+    .badge-board h2,.section-head h2{margin:0;font-size:25px;letter-spacing:-.035em}.badge-board p{margin:4px 0 0;color:var(--muted)}
+    .badge-cloud{display:grid;gap:16px;margin-top:18px}
+    .catalog-level{padding-top:16px;border-top:1px solid var(--line)}.catalog-level:first-child{padding-top:0;border-top:0}.catalog-level-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px}.catalog-level-head h3{font-size:19px;margin:0}.catalog-level-head span{font-size:12px;font-weight:900;color:var(--green)}
+    .badge-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.badge-group{padding:13px;border:1px solid var(--line);border-radius:14px;background:#fbfdfc}.badge-group h4{margin:0 0 9px;color:#365f52;font-size:12px;text-transform:uppercase;letter-spacing:.055em}.badge-group.awards{background:#f6f2fc;border-color:#e4dcf4}.badge-group.awards h4{color:#6653a6}
+    .badge-group-list{display:flex;flex-wrap:wrap;gap:6px}
+    .badge-chip{padding:8px 12px;border-radius:999px;background:var(--mint);color:#075e3b;font-size:13px;font-weight:800}
+    .badge-types,.overlap{padding:24px;margin-top:18px}.badge-types-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:15px}.type-card{padding:17px;border-radius:16px;background:#f7faf8;border:1px solid var(--line)}.type-card .type-icon{font-size:25px}.type-card h3{font-size:17px;margin:7px 0 4px}.type-card p{font-size:13px;color:var(--muted);margin:0}.type-card.official{background:#edf9f3}.type-card.fun{background:#fff7e7}.type-card.award{background:#f3f0fb}
+    .overlap-note{color:var(--muted);margin:4px 0 16px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:15px}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#edf7f2;color:#285748;font-size:12px;text-transform:uppercase;letter-spacing:.05em}td:first-child{font-weight:900;color:var(--green)}.group-row td{background:#f3f0fb;color:#6653a6!important;font-size:12px;text-transform:uppercase;letter-spacing:.055em}tr:last-child td{border-bottom:0}.catalog-link{display:inline-block;margin-top:14px;color:var(--green);font-weight:900;text-decoration:none}.catalog-link:hover{text-decoration:underline}
+    .section-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin:34px 0 14px}
+    .section-head p{margin:4px 0 0;color:var(--muted)}
+    .legend{display:flex;gap:9px;flex-wrap:wrap}.legend span,.status{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
+    .dot{width:9px;height:9px;border-radius:50%}.confirmed .dot,.dot.confirmed{background:#0b9e65}.ongoing .dot,.dot.ongoing{background:#2b82c9}.verify .dot,.dot.verify{background:#e39b22}
+    .filters{padding:16px;display:grid;grid-template-columns:1.5fr repeat(3,1fr) auto;gap:10px;position:sticky;top:10px;z-index:5}
+    .control{border:1px solid var(--line);background:#fbfdfc;border-radius:13px;padding:11px 12px;color:var(--ink);min-width:0}
+    .control:focus{outline:3px solid #b8ead3;border-color:var(--green)}
+    .save-toggle{border:0;background:var(--green);color:white;border-radius:13px;padding:10px 16px;font-weight:900;cursor:pointer;white-space:nowrap}
+    .save-toggle.active{background:#5f4aa3}
+    .result-line{display:flex;justify-content:space-between;margin:13px 2px;color:var(--muted);font-size:13px}
+    .trip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .trip-card{padding:18px;display:flex;flex-direction:column;min-height:340px;transition:.2s ease;position:relative;overflow:hidden}
+    .trip-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .trip-card:before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--accent,var(--green))}
+    .card-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px}.icon{width:47px;height:47px;display:grid;place-items:center;border-radius:15px;background:var(--tint,var(--mint));font-size:24px}
+    .save{width:39px;height:39px;border:1px solid var(--line);background:white;border-radius:50%;cursor:pointer;font-size:19px;color:#80958e}.save.saved{color:#e85b72;background:#fff1f3;border-color:#ffc7d0}
+    .status{padding:5px 8px;border-radius:7px;background:#f1f6f3;color:var(--muted);width:max-content;margin-bottom:9px}
+    .trip-card h3{font-size:20px;line-height:1.18;letter-spacing:-.025em;margin:0}.place{font-size:13px;color:var(--muted);margin:6px 0 9px}.earn-type{display:inline-flex;width:max-content;padding:5px 8px;border-radius:7px;background:#eef6f2;color:#176246;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.045em;margin-bottom:12px}.earn-type.fun{background:#fff3d8;color:#855913}.earn-type.steps{background:#edf1fb;color:#425f9c}
+    .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}.pill{font-size:11px;font-weight:800;padding:5px 8px;background:#f3f7f5;border-radius:7px}
+    .trip-card p{color:#536a62;font-size:13px;margin:0 0 12px}.trip-card .why{border-left:3px solid var(--accent,var(--green));padding-left:10px;color:var(--ink)}
+    .card-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:10px;border-top:1px solid #edf2ef}
+    .card-actions a{font-weight:900;color:var(--green);text-decoration:none}.card-actions a:hover{text-decoration:underline}.card-actions small{color:var(--muted);text-align:right}
+    .timeline{padding:22px;margin-top:18px}.timeline-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px}.date-card{padding:15px;background:#f6faf8;border-radius:15px;border:1px solid var(--line)}.date-card b{display:block;color:var(--green);font-size:12px;text-transform:uppercase;letter-spacing:.06em}.date-card strong{display:block;margin:4px 0;line-height:1.25}.date-card small{color:var(--muted)}
+    .footnote{margin-top:24px;padding:20px;border-radius:18px;background:#edf7f2;color:#3f5d53;font-size:13px}.footnote strong{color:var(--ink)}
+    .catalog-section{display:none}body.catalog-open .catalog-section,body.catalog-open .badge-board{display:block}body.catalog-open .note-card,body.catalog-open .planner-section,body.catalog-open .grade-nav{display:none}
+    dialog{width:min(900px,calc(100% - 24px));max-height:88vh;border:0;border-radius:26px;padding:0;box-shadow:0 30px 100px rgba(0,0,0,.28);color:var(--ink)}dialog::backdrop{background:rgba(5,35,27,.7);backdrop-filter:blur(4px)}
+    .review-head{position:sticky;top:0;z-index:2;background:white;padding:22px 24px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:start}.review-head h2{margin:0;font-size:27px}.review-head p{margin:3px 0 0;color:var(--muted)}.close-dialog{border:1px solid var(--line);background:#f6faf8;width:40px;height:40px;border-radius:50%;font-size:22px;cursor:pointer}.review-body{padding:20px 24px 25px}.review-list{display:grid;gap:10px}.review-row{display:grid;grid-template-columns:44px 1.2fr .9fr .8fr;gap:12px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:15px}.review-row .mini-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--mint);font-size:21px}.review-row strong{line-height:1.2}.review-row small{display:block;color:var(--muted)}.review-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.review-actions button{border:1px solid var(--line);background:white;border-radius:11px;padding:10px 14px;font-weight:900;cursor:pointer}.review-actions .primary{background:var(--green);color:white;border-color:var(--green)}
+    body.presenting .hero{padding:30px 0 22px}body.presenting h1{font-size:42px}body.presenting .hero-panel,body.presenting .filters,body.presenting .result-line,body.presenting .footnote,body.presenting footer{display:none}body.presenting main{padding-top:22px}body.presenting .trip-card{min-height:300px}body.presenting .trip-card p{font-size:14px}body.presenting .section-head p{display:none}
+    .empty{padding:50px;text-align:center;color:var(--muted);grid-column:1/-1}
+    footer{padding:22px 0 40px;color:#6a7d76;font-size:12px;text-align:center}
+    @media(max-width:900px){.hero-grid,.level-note{grid-template-columns:1fr}.hero-panel{max-width:520px}.filters{grid-template-columns:1fr 1fr;position:static}.filters .search{grid-column:1/-1}.trip-grid{grid-template-columns:repeat(2,1fr)}.timeline-grid{grid-template-columns:repeat(2,1fr)}.badge-types-grid{grid-template-columns:1fr}}
+    @media(max-width:620px){.shell{width:min(100% - 20px,1180px)}.hero{padding-top:38px}.trip-grid,.timeline-grid,.badge-groups{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.filters .search{grid-column:auto}.section-head{align-items:flex-start;flex-direction:column}.badge-board,.note-card{padding:19px}.trip-card{min-height:0}.review-row{grid-template-columns:44px 1fr}.review-row .review-meta{grid-column:2}.review-actions{flex-direction:column}.review-actions button{width:100%}}
+    @media print{.hero{padding:24px 0;background:#087a4d!important;-webkit-print-color-adjust:exact}.hero-panel,.grade-nav,.page-nav,.filters,.save{display:none}.trip-grid{grid-template-columns:repeat(2,1fr)}.trip-card{break-inside:avoid;box-shadow:none}.timeline{break-before:page}.shell{width:100%}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="shell">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">☘ Buford-area troop planner</span>
+          <h1>Badges are better with an adventure.</h1>
+          <p>Explore local outings, match them to badge possibilities, compare cost, and save a short list for the troop. Built for Daisies, Juniors, and Cadettes.</p>
+        </div>
+        <aside class="hero-panel">
+          <span class="date">Next confirmed deadline</span>
+          <strong>Junior Badge Frenzy</strong>
+          <small>October 10, 2026 · Cartersville · $35/scout</small>
+        </aside>
+      </div>
+      <nav class="page-nav" aria-label="Dashboard sections">
+        <button class="page-tab active" data-page="planner" type="button" aria-selected="true">📍 Trip Planner</button>
+        <button class="page-tab" data-page="catalog" type="button" aria-selected="false">🏅 Official Badge Catalog</button>
+      </nav>
+      <nav class="grade-nav" aria-label="Choose Girl Scout level">
+        <button class="grade-btn active" data-level="all">All ideas</button>
+        <button class="grade-btn" data-level="daisy">Daisy · K–1</button>
+        <button class="grade-btn" data-level="junior">Junior · 4–5</button>
+        <button class="grade-btn" data-level="cadette">Cadette · 6–8</button>
+      </nav>
+      <div class="hero-tools">
+        <button class="hero-tool" id="reviewPlan" type="button">♥ Review saved plan</button>
+        <button class="hero-tool" id="presentMode" type="button">▣ Presentation view</button>
+        <button class="hero-tool" id="printPlan" type="button">↧ Print / save PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="level-note">
+      <div class="note-card">
+        <span class="big" id="levelNoteTitle">All three troop levels</span>
+        <p id="levelNoteCopy">Daisy K–1 · Junior 4–5 · Cadette 6–8</p>
+        <button class="catalog-jump" data-page="catalog" type="button">See all official badges →</button>
+      </div>
+      <div class="badge-board">
+        <div><h2 id="levelTitle">Complete official badge catalog</h2><p id="levelCopy">Daisy, Junior, and Cadette national proficiency badges—organized by theme</p></div>
+        <div class="badge-cloud" id="badgeCloud"></div>
+      </div>
+    </section>
+
+    <section class="badge-types catalog-section" aria-labelledby="badgeTypeTitle">
+      <div class="section-head" style="margin:0"><div><h2 id="badgeTypeTitle">What the girls actually earn</h2><p>There is no general list of mandatory badges. The important difference is official earned work versus participation patches.</p></div></div>
+      <div class="badge-types-grid">
+        <article class="type-card official"><span class="type-icon">🏅</span><h3>Official badges & Daisy petals</h3><p>Girls complete published requirements. These are official earned awards placed on the front of the uniform. Daisy petals teach the Girl Scout Law; they are official, but not generally mandatory.</p></article>
+        <article class="type-card fun"><span class="type-icon">🎟️</span><h3>Fun patches</h3><p>Recognize attendance, a special event, or a troop experience. They usually have no national requirements and belong on the back of the vest or tunic.</p></article>
+        <article class="type-card award"><span class="type-icon">⭐</span><h3>Highest awards</h3><p>Separate from ordinary badges. Juniors working toward Bronze and Cadettes working toward Silver complete a level-appropriate Journey before their Take Action project.</p></article>
+      </div>
+    </section>
+
+    <section class="overlap catalog-section" aria-labelledby="overlapTitle">
+      <div class="section-head" style="margin:0"><div><h2 id="overlapTitle">One activity, three level-appropriate badges</h2><p class="overlap-note">The girls can participate together, but each level completes and earns its own badge version.</p></div></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Shared theme</th><th>Daisy · K–1</th><th>Junior · 4–5</th><th>Cadette · 6–8</th><th>Good outing</th></tr></thead>
+        <tbody>
+          <tr class="group-row"><td colspan="5">Current shared field-trip matches</td></tr>
+          <tr><td>Animals</td><td>Animal Observer</td><td>Animal Habitats</td><td>Animal Helpers</td><td>Aquarium or nature center</td></tr>
+          <tr><td>Outdoor art</td><td>Outdoor Art Maker</td><td>Outdoor Art Explorer</td><td>Outdoor Art Apprentice</td><td>Hot Spot or GEHC</td></tr>
+          <tr><td>Art & design</td><td>Art and Design</td><td>Art and Design</td><td>Art and Design</td><td>Hot Spot or museum</td></tr>
+          <tr><td>Innovation</td><td>Create and Innovate</td><td>Create and Innovate</td><td>Create and Innovate</td><td>Maker space or library</td></tr>
+          <tr><td>Camping</td><td>Buddy Camper</td><td>Camper / Eco Camper</td><td>Primitive Camper</td><td>Camp Gwinnett</td></tr>
+          <tr><td>Trail skills</td><td>Daisy Trail Adventure</td><td>Junior Trail Adventure</td><td>Cadette Trail Adventure</td><td>GEHC or nature center</td></tr>
+          <tr><td>Space science</td><td>Space Science Explorer</td><td>Space Science Investigator</td><td>Space Science Researcher</td><td>Planetarium or night hike</td></tr>
+          <tr><td>Civics</td><td>Democracy for Daisies</td><td>Democracy for Juniors</td><td>Democracy for Cadettes</td><td>City hall or government event</td></tr>
+          <tr><td>Digital leadership</td><td>Daisy Digital Leadership</td><td>Junior Digital Leadership</td><td>Cadette Digital Leadership</td><td>Virtual workshop</td></tr>
+          <tr class="group-row"><td colspan="5">More badges with the same official name at all three levels</td></tr>
+          <tr><td>Crafting &amp; making</td><td>Craft and Tinker</td><td>Craft and Tinker</td><td>Craft and Tinker</td><td>Maker space, pottery studio, or craft workshop</td></tr>
+          <tr><td>STEM careers</td><td>STEM Career Exploration</td><td>STEM Career Exploration</td><td>STEM Career Exploration</td><td>Career panel, science center, college, or company visit</td></tr>
+          <tr><td>Coding</td><td>Coding Basics</td><td>Coding Basics</td><td>Coding Basics</td><td>Library, coding school, or technology workshop</td></tr>
+          <tr><td>Game design</td><td>Digital Game Design</td><td>Digital Game Design</td><td>Digital Game Design</td><td>Coding school or game-design workshop</td></tr>
+          <tr><td>App design</td><td>App Development</td><td>App Development</td><td>App Development</td><td>Technology workshop or app-design challenge</td></tr>
+          <tr><td>Cybersecurity basics</td><td>Cybersecurity Basics</td><td>Cybersecurity Basics</td><td>Cybersecurity Basics</td><td>Online-safety or cybersecurity workshop</td></tr>
+          <tr><td>Cybersecurity safety</td><td>Cybersecurity Safeguards</td><td>Cybersecurity Safeguards</td><td>Cybersecurity Safeguards</td><td>Cybersecurity company or expert presentation</td></tr>
+          <tr><td>Digital investigation</td><td>Cybersecurity Investigator</td><td>Cybersecurity Investigator</td><td>Cybersecurity Investigator</td><td>Digital-forensics or cybersecurity activity</td></tr>
+          <tr class="group-row"><td colspan="5">More shared themes with level-appropriate badge names</td></tr>
+          <tr><td>Environmental stewardship</td><td>Eco Learner</td><td>Eco Camper</td><td>Eco Trekker</td><td>GEHC, nature center, park, or conservation project</td></tr>
+          <tr><td>Climbing or snow sports</td><td>Daisy Snow or Climbing Adventure</td><td>Junior Snow or Climbing Adventure</td><td>Cadette Snow or Climbing Adventure</td><td>Climbing gym, outdoor clinic, or snow-sports outing</td></tr>
+          <tr><td>Budgeting</td><td>Money Explorer</td><td>Budget Maker</td><td>Budget Manager</td><td>Bank visit, store-budget challenge, or financial workshop</td></tr>
+          <tr><td>Personal finance</td><td>My Money Choices</td><td>My Money Plan</td><td>My Money Habits</td><td>Credit union, financial educator, or troop budgeting activity</td></tr>
+          <tr><td>Cookie business</td><td>My First Cookie Business</td><td>My Cookie Team</td><td>My Cookie Venture</td><td>Local business visit or cookie-season workshop</td></tr>
+          <tr><td>Cookie planning</td><td>Cookie Goal Setter</td><td>Cookie Collaborator</td><td>Cookie Market Researcher</td><td>Marketing workshop or customer-research activity</td></tr>
+          <tr><td>Robotics programming</td><td>What Robots Do</td><td>Programming Robots</td><td>Programming Robots</td><td>Robotics lab, STEM center, or library makerspace</td></tr>
+          <tr><td>Robotics design</td><td>How Robots Move</td><td>Designing Robots</td><td>Designing Robots</td><td>Engineering workshop or robotics team visit</td></tr>
+          <tr><td>Robotics presentation</td><td>Design a Robot</td><td>Showcasing Robots</td><td>Showcasing Robots</td><td>Robotics demonstration followed by a troop design challenge</td></tr>
+        </tbody>
+      </table></div>
+      <a class="catalog-link" href="https://www.girlscouts.org/en/members/for-girl-scouts/badges-journeys-awards/badge-explorer.html" target="_blank" rel="noopener">Browse the complete current Girl Scout badge catalog ↗</a>
+    </section>
+
+    <section class="planner-section" aria-labelledby="tripTitle">
+      <div class="section-head">
+        <div><h2 id="tripTitle">Field trips & special events</h2><p>Start with the green “confirmed” cards; yellow cards need a quick call or link check.</p></div>
+        <div class="legend"><span><i class="dot confirmed"></i>Confirmed</span><span><i class="dot ongoing"></i>Ongoing</span><span><i class="dot verify"></i>Verify</span></div>
+      </div>
+      <div class="filters">
+        <input class="control search" id="search" type="search" placeholder="Search place, badge, or activity…" aria-label="Search trips">
+        <select class="control" id="area" aria-label="Filter by area"><option value="all">Any area</option><option value="near">Near Buford</option><option value="gwinnett">Gwinnett County</option><option value="metro">Metro Atlanta</option><option value="virtual">Virtual</option><option value="destination">Destination trip</option><option value="unknown">Location to confirm</option></select>
+        <select class="control" id="type" aria-label="Filter by activity"><option value="all">Any activity</option><option value="art">Art & making</option><option value="outdoors">Outdoors & animals</option><option value="civics">Civics & leadership</option><option value="sports">Sports & fun patch</option><option value="multi">Multi-activity</option></select>
+        <select class="control" id="cost" aria-label="Filter by cost"><option value="all">Any price</option><option value="free">Free / likely free</option><option value="15">$15 or less</option><option value="40">$40 or less</option></select>
+        <button class="save-toggle" id="savedOnly" type="button">♡ Saved only</button>
+      </div>
+      <div class="result-line"><span id="resultCount"></span><span>Prices can change—open the source before collecting money.</span></div>
+      <div class="trip-grid" id="tripGrid"></div>
+    </section>
+
+    <section class="timeline planner-section" aria-labelledby="calendarTitle">
+      <div class="section-head" style="margin:0"><div><h2 id="calendarTitle">Dates to put on the troop calendar</h2><p>Upcoming as of August 26, 2026.</p></div></div>
+      <div class="timeline-grid">
+        <div class="date-card"><b>Sep 18–20, 2026</b><strong>Songs &amp; S’mores</strong><small>Junior + Cadette · Camp Meriwether</small></div>
+        <div class="date-card"><b>Sep 19, 2026</b><strong>GSCon: Making Waves</strong><small>All levels · South Atlanta · fun patch</small></div>
+        <div class="date-card"><b>Oct 10, 2026</b><strong>Two events—choose one</strong><small>Hunger 101 or Junior Badge Frenzy</small></div>
+        <div class="date-card"><b>Nov 2, 2026</b><strong>STEM Career Panel</strong><small>6–7 PM · virtual · all three levels</small></div>
+        <div class="date-card"><b>Nov 7, 2026</b><strong>Rock Climbing Clinic</strong><small>Junior + Cadette · Alabama destination</small></div>
+        <div class="date-card"><b>Nov 14–15, 2026</b><strong>Music + Craft Workshops</strong><small>Junior Musician or Daisy Craft &amp; Tinker</small></div>
+        <div class="date-card"><b>Nov 13 / Jan 23</b><strong>CNC Scout Nights</strong><small>Junior then Daisy · lottery deadlines apply</small></div>
+        <div class="date-card"><b>Jan 30, 2027</b><strong>Fairy Magic</strong><small>Daisy · Camp Meriwether day trip</small></div>
+        <div class="date-card"><b>Apr 18, 2027</b><strong>Camp Gwinnett</strong><small>12:30–4 · early bird opens Jan 1</small></div>
+      </div>
+    </section>
+
+    <aside class="footnote planner-section"><strong>Badge planning note:</strong> A field trip does not automatically earn a badge unless the event explicitly says all requirements are completed. “Badge tie-in” means the outing can cover or inspire steps; compare it with the current Volunteer Toolkit or badge booklet and complete any remaining steps at a meeting.</aside>
+  </main>
+  <dialog id="reviewDialog">
+    <div class="review-head"><div><h2>Troop trip shortlist</h2><p>Your saved choices stay here when you close and reopen this page.</p></div><button class="close-dialog" id="closeReview" aria-label="Close review">×</button></div>
+    <div class="review-body"><div class="review-list" id="reviewList"></div><div class="review-actions"><button id="clearSaved" type="button">Clear shortlist</button><button id="printReview" class="primary" type="button">Print this plan</button></div></div>
+  </dialog>
+  <footer><div class="shell">Researched and organized August 26, 2026 · Drive-area labels are planning guides, not traffic estimates.</div></footer>
+
+  <script>
+    const LEVELS = {
+      all:{noteTitle:'All three troop levels',noteCopy:'Daisy K–1 · Junior 4–5 · Cadette 6–8',title:'Complete official badge ideas',copy:'Current 2026 GSUSA national proficiency badges for all three levels—none are generally required'},
+      daisy:{noteTitle:'Daisy · K–1',noteCopy:'Kindergarten and 1st grade',title:'Daisy official badges',copy:'38 national proficiency badges, plus 10 official Daisy petals'},
+      junior:{noteTitle:'Junior · Grades 4–5',noteCopy:'Fourth and fifth grade',title:'Junior official badges',copy:'Complete current list of 54 national proficiency badges'},
+      cadette:{noteTitle:'Cadette · Grades 6–8',noteCopy:'Sixth through eighth grade',title:'Cadette official badges',copy:'Complete current list of 46 national proficiency badges'}
+    };
+    const BADGE_CATALOG = {
+      daisy:[
+        {category:'Animals & Nature',badges:['Animal Observer','Shapes in Nature','Numbers in Nature','Design with Nature']},
+        {category:'Art & Imagination',badges:['Outdoor Art Maker','Art and Design','Create and Innovate','Craft and Tinker']},
+        {category:'Balanced Living',badges:['Fun with Movement','Money Explorer','My Money Choices']},
+        {category:'Leadership & Your Future',badges:['My First Cookie Business','Cookie Goal Setter','Digital Leadership','Toy Business Designer','STEM Career Exploration']},
+        {category:'Outdoor Adventure',badges:['Eco Learner','Daisy Trail Adventure','Buddy Camper']},
+        {category:'Sports & Recreation',badges:['Daisy Snow or Climbing Adventure']},
+        {category:'Technology & Innovation',badges:['Automotive Design','Automotive Engineering','Automotive Manufacturing','Coding Basics','Digital Game Design','App Development','Cybersecurity Basics','Cybersecurity Safeguards','Cybersecurity Investigator','Board Game Design Challenge','Roller Coaster Design Challenge','Model Car Design Challenge','What Robots Do','How Robots Move','Design a Robot']},
+        {category:'Your World Near & Far',badges:['Good Neighbor','Democracy for Daisies','Space Science Explorer']},
+        {category:'Daisy Petals · official awards',award:true,badges:['Honest and Fair','Friendly and Helpful','Considerate and Caring','Courageous and Strong','Responsible for What I Say and Do','Respect Myself and Others','Respect Authority','Use Resources Wisely','Make the World a Better Place','Be a Sister to Every Girl Scout']}
+      ],
+      junior:[
+        {category:'Animals & Nature',badges:['Animal Habitats','Shapes in Nature','Numbers in Nature','Design with Nature','Flowers']},
+        {category:'Art & Imagination',badges:['Outdoor Art Explorer','Art and Design','Create and Innovate','Gardener','Craft and Tinker','Musician','Scribe']},
+        {category:'Balanced Living',badges:['Uniquely Us','Simple Meals','Budget Maker','My Money Plan','Junior First Aid','Social Butterfly','Independence','Entertainment Technology']},
+        {category:'Leadership & Your Future',badges:['My Cookie Team','Cookie Collaborator','Digital Leadership','Business Jumpstart','STEM Career Exploration']},
+        {category:'Outdoor Adventure',badges:['Geocacher','Eco Camper','Camper','Junior Trail Adventure']},
+        {category:'Sports & Recreation',badges:['Practice with Purpose','Playing the Past','Detective','Horseback Riding','Junior Snow or Climbing Adventure']},
+        {category:'Technology & Innovation',badges:['Automotive Design','Automotive Engineering','Automotive Manufacturing','Coding Basics','Digital Game Design','App Development','Cybersecurity Basics','Cybersecurity Safeguards','Cybersecurity Investigator','Digital Photographer','Paddle Boat Design Challenge','Crane Design Challenge','Balloon Car Design Challenge','Programming Robots','Designing Robots','Showcasing Robots']},
+        {category:'Your World Near & Far',badges:['Inside Government','Democracy for Juniors','Junior Girl Scout Way','Space Science Investigator']}
+      ],
+      cadette:[
+        {category:'Animals & Nature',badges:['Animal Helpers','Trees']},
+        {category:'Art & Imagination',badges:['Outdoor Art Apprentice','Art and Design','Create and Innovate','Woodworker','Craft and Tinker','Public Speaker','Screenwriter']},
+        {category:'Balanced Living',badges:['Outside the Mirror','New Cuisines','Budget Manager','My Money Habits','Cadette First Aid','Netiquette','Babysitter','Science of Happiness']},
+        {category:'Leadership & Your Future',badges:['My Cookie Venture','Cookie Market Researcher','Digital Leadership','Business Creator','STEM Career Exploration']},
+        {category:'Outdoor Adventure',badges:['Night Owl','Eco Trekker','Trailblazing','Cadette Trail Adventure','Primitive Camper']},
+        {category:'Sports & Recreation',badges:['Good Sportsmanship','Field Day','Special Agent','Archery','Cadette Snow or Climbing Adventure']},
+        {category:'Technology & Innovation',badges:['Coding Basics','Digital Game Design','App Development','Cybersecurity Basics','Cybersecurity Safeguards','Cybersecurity Investigator','Digital Movie Maker','Programming Robots','Designing Robots','Showcasing Robots']},
+        {category:'Your World Near & Far',badges:['Finding Common Ground','Democracy for Cadettes','Cadette Girl Scout Way','Space Science Researcher']}
+      ]
+    };
+    const trips = [
+      {id:'hotspot',icon:'🎨',accent:'#e8737c',tint:'#fff0f1',title:'The Hot Spot Studios',place:'Sugar Hill · Near Buford',area:'near',type:'art',levels:['daisy','brownie','junior','cadette'],status:'ongoing',statusText:'Ongoing',price:30,priceText:'Avg. $30–36',date:'Reserve for 6+',badges:['Outdoor Art Maker','Outdoor Art Creator','Art & Design','Outdoor Art Apprentice','Potter'],summary:'Pottery, canvas, candles, mosaics, and more. No studio fee; the studio welcomes Scout troops.',why:'Best easy local art option. A reported 10% Scout discount was not visible online—confirm it when booking.',url:'https://www.thehotspotstudios.com/sugar-hill-ga/',source:'Official studio'},
+      {id:'painting-party-2026',icon:'🖌️',accent:'#d85f7f',tint:'#fff0f4',title:'2026 Girl Scout Painting Party',place:'Location listed on registration page',area:'unknown',type:'art',levels:['daisy','junior','cadette'],status:'verify',statusText:'Confirm event details',price:99,priceText:'See registration page',date:'2026 · confirm date and time',badges:['Art and Design','Painting','Creative expression','Outdoor Art'],summary:'Potential Girl Scout group painting activity. Confirm the location, eligible levels, date, price, supplies, and adult requirements on the registration page before choosing it.',why:'The painting project may support level-appropriate art badge steps. Ask whether the organizer follows all requirements for a named official badge and whether a badge or participation patch is included.',url:'https://my.cheddarup.com/c/2026-girl-scout-painting-party/items',source:'Cheddar Up registration link'},
+      {id:'aquarium',icon:'🐋',accent:'#1595b6',tint:'#e8f8fc',title:'Georgia Aquarium',place:'Downtown Atlanta · Metro Atlanta',area:'metro',type:'outdoors',levels:['daisy','brownie','junior','cadette'],status:'ongoing',statusText:'Ongoing',price:45,priceText:'Price varies',date:'Year-round',badges:['Eco Learner','Eco Friend','Animal Habitats','Eco Trekker'],summary:'Scout visits during normal hours plus selected sleepovers. Discounted group tickets are offered for 15+ scouts.',why:'Strong conservation and animal-habitat tie-in; ask for an itinerary that supports your chosen badge steps.',url:'https://www.georgiaaquarium.org/booking/girl-scouts/',source:'Official Scout page'},
+      {id:'camp-gwinnett',icon:'🏕️',accent:'#0b8b59',tint:'#e7f7ef',title:'Camp Gwinnett',place:'Tribble Mill Park · Gwinnett County',area:'gwinnett',type:'outdoors',levels:['daisy','brownie','junior','cadette'],status:'confirmed',statusText:'Confirmed',price:5,priceText:'$5 early · $10 · $15 day-of',date:'Apr 18, 2027',badges:['Eco Learner','Eco Friend','Eco Camper','Primitive Camper','Outdoor skills'],summary:'Hands-on stations cover nature, camping clothes and gear, fire-building, outdoor cooking, and more.',why:'Excellent low-cost sampler. Cadette troops can host a booth and may camp the night before with a troop adult.',url:'https://www.campgwinnett.com/',source:'Official event site'},
+      {id:'gehc',icon:'🌿',accent:'#77a642',tint:'#f1f7e7',title:'Environmental Expedition',place:'Gwinnett Environmental & Heritage Center · Near Buford',area:'near',type:'outdoors',levels:['daisy','brownie','junior','cadette'],status:'ongoing',statusText:'Free weekends',price:0,priceText:'Free on weekends · $8/person guided program',date:'Saturdays · second Sunday each month, 12–5 PM',badges:['Eco Learner','Eco Friend','Animal Habitats','Eco Trekker','Trees','STEAM'],summary:'Staff-confirmed weekend option: admission is free. On the second Sunday of each month from noon–5 PM, different tours may support badge work. Saturdays offer STEAM activities, and other exhibits may also help girls complete badge steps.',why:'Very close to Buford and a strong free option. Ask which tours, STEAM activities, and exhibits are scheduled, then compare them with the requirements for the troop’s selected badges. A separate two-hour guided program for ages 5–12 is available at $8 per person with a 10-child minimum.',url:'https://www.gwinnettcounty.com/government/departments/parks-recreation/parks/explore/gwinnett-environmental-heritage-center/educational-programs',source:'Center staff update + Gwinnett County'},
+      {id:'day-as-droplet',icon:'💧',accent:'#2385ad',tint:'#eaf7fc',title:'Day as a Droplet with The Water Tower',place:'The Water Tower · Buford',area:'near',type:'multi',levels:['daisy','junior','cadette'],status:'verify',statusText:'Confirm registration details',price:99,priceText:'See registration page',date:'Confirm date and time',badges:['Water conservation','Environmental stewardship','STEM','Eco Learner'],summary:'Potential local water-science field trip at The Water Tower’s Buford campus. Confirm the schedule, eligible Girl Scout levels, price, capacity, transportation, and adult requirements on the registration page.',why:'Water-cycle, conservation, environmental-stewardship, and STEM activities may support different badge steps at each level. Confirm whether the program completes a named official badge, provides selected steps, or includes a fun patch.',url:'https://my.cheddarup.com/c/dayasadroplet-w-thewatertower/items',source:'Cheddar Up registration link + The Water Tower'},
+      {id:'hamilton-mill-pantry',icon:'🥫',accent:'#bd6b31',tint:'#fff3e8',title:'Hamilton Mill Pantry: Food Bank Tour + Donation Drive',place:'The Pantry at Hamilton Mill · Dacula',area:'near',type:'civics',levels:['daisy','junior','cadette'],status:'verify',statusText:'Contact to schedule',price:0,priceText:'Likely free · bring donations',date:'Arrange a troop visit in advance',badges:['Food security','Community service','Hunger awareness','Take Action planning'],summary:'A local alternative to the Atlanta Community Food Bank experience: hold a troop food drive, deliver the donations, and tour the pantry to learn how donated food is received, sorted, packed, and distributed to families.',why:'Supports food-insecurity education, community service, and possible Take Action or related badge steps. Regular hands-on volunteer roles require at least 7th grade, and 7th- and 8th-graders must remain with a trusted adult. Daisies and Juniors can participate in the donation and an approved educational tour unless the pantry arranges a special family activity.',url:'https://tphm.org/volunteer',source:'Official Pantry at Hamilton Mill'},
+      {id:'virtual',icon:'💻',accent:'#6e62b5',tint:'#f0eefb',title:'Girl Scouts Virtual Events',place:'Online · Virtual',area:'virtual',type:'multi',levels:['daisy','brownie','junior','cadette'],status:'ongoing',statusText:'Ongoing',price:0,priceText:'Free + paid events',date:'New events added',badges:['STEM','Entrepreneurship','Life Skills','Outdoor'],summary:'National calendar with filters for grade, Girl Scout level, and event type.',why:'Useful low-logistics backup when transportation or adult ratios make a field trip difficult.',url:'https://www.girlscouts.org/en/activity-zone/virtual-event-calendar.html',source:'GSUSA'},
+      {id:'inside-government',icon:'🗳️',accent:'#5a78b8',tint:'#edf2fc',title:'Your Voice Matters: Inside Government',place:'Online · Virtual',area:'virtual',type:'civics',levels:['junior'],status:'verify',statusText:'Verify listing',price:6,priceText:'$6 listed',date:'2026 page—check date',badges:['Inside Government'],summary:'A virtual Junior badge-day lead supplied for learning how government works and how girls can use their voices.',why:'Potentially completes or supports Junior Inside Government, but the supplied page was not accessible during verification.',url:'https://www.girlscoutsfl.org/en/sf-events-repository/2026/your-voice-matters--virtual-inside-government-badge-day--j-.html',source:'Supplied event link'},
+      {id:'atlanta-united',icon:'⚽',accent:'#b9483d',tint:'#fbecea',title:'Atlanta United Girl Scout Outing',place:'Atlanta · Metro Atlanta',area:'metro',type:'sports',levels:['daisy','brownie','junior','cadette'],status:'verify',statusText:'Verify date',price:50,priceText:'$50+ reported',date:'Nov 1 · year/details TBD',badges:['Good Sportsmanship','Fair Play','Team-building','Fun patch'],summary:'A possible troop soccer outing reported for November 1.',why:'Keep as a lead, not a booked event: an official Girl Scout event page was not found in the current search.',url:'https://www.atlutd.com/schedule/',source:'Official team schedule'},
+      {id:'junior-frenzy',icon:'🖼️',accent:'#d88732',tint:'#fff3e5',title:'Junior Badge Frenzy',place:'Booth + Bartow Museums · Cartersville',area:'metro',type:'art',levels:['junior'],status:'confirmed',statusText:'Confirmed',price:35,priceText:'$35/scout · $16/adult',date:'Oct 10, 2026 · 9:30–2:30',badges:['Art & Design','Georgia’s Native People'],summary:'Gallery exploration, landscape painting, storytelling, crafts, and Native history across two museums. Bring lunch.',why:'The clearest two-badge win: the listing says scouts complete both full badge requirements and receive badges.',url:'https://www.girlscoutsatl.org/en/sf-events-repository/2026/art-and-design-badge---georgia-s-native-people-s-badge-workshop-.html',source:'Girl Scouts ATL'},
+      {id:'gladiators',icon:'🏒',accent:'#286a96',tint:'#eaf4fb',title:'Atlanta Gladiators Girl Scout Nights',place:'Gas South Arena · Gwinnett County',area:'gwinnett',type:'sports',levels:['daisy','brownie','junior','cadette'],status:'ongoing',statusText:'2026–27 season',price:35,priceText:'Request group price',date:'Dates posted by team',badges:['Good Sportsmanship','Fair Play','Team-building','Exclusive patch'],summary:'Official Girl Scout nights include an exclusive Gladiators patch; troop fan experiences are available at home games.',why:'Convenient Gwinnett social outing. Treat this primarily as a fun patch or team-building event.',url:'https://atlantagladiators.com/girl-scouts',source:'Official team page'},
+      {id:'cnc-programs',icon:'🦉',accent:'#4d8a62',tint:'#ebf5ee',title:'Chattahoochee Nature Center Badge Programs',place:'Roswell · Metro Atlanta',area:'metro',type:'outdoors',levels:['daisy','brownie','junior','cadette'],status:'ongoing',statusText:'Ongoing',price:15,priceText:'$170 up to 12 people',date:'Weekday discount available',badges:['Eco Learner','Outdoor Art Creator','Animal Habitats','Flowers','Eco Camper','Outdoor Art Explorer'],summary:'Naturalist-led, 1½-hour outdoor programs work on badges or journeys and include a live animal visit.',why:'Strong prepared programming. Base fee is about $14.17 each at 12 people; ask about Cadette custom options.',url:'https://chattnaturecenter.org/education/scouts/girl-scouts/',source:'Official CNC page'},
+      {id:'cnc-nights',icon:'🌙',accent:'#5c5a9b',tint:'#efeff9',title:'CNC Scout Nights',place:'Roswell · Metro Atlanta',area:'metro',type:'outdoors',levels:['daisy','junior'],status:'confirmed',statusText:'Confirmed',price:20,priceText:'$20/scout',date:'Nov 13 / Jan 23',badges:['Night sky','Hiking','Outdoor skills','Nature fun'],summary:'Junior Night is November 13 and Daisy Night is January 23, with hikes, nocturnal animals, campfire, and s’mores.',why:'Memorable evening option. Admission uses a lottery; note the entry deadlines on the source page.',url:'https://chattnaturecenter.org/education/scouts/girl-scouts/',source:'Official CNC page'},
+      {id:'sewing',icon:'🧵',accent:'#b85b8c',tint:'#fbeef5',title:'Hamilton Mill Learning Lab: Lecture or Demonstration',place:'Hamilton Mill Library · Near Buford',area:'near',type:'art',levels:['daisy','junior','cadette'],status:'verify',statusText:'Lecture may be arranged',price:0,priceText:'Ask library about group cost',date:'Mon, Tue, Thu & Fri: starts through 4:30 PM · Wed: starts through 7 PM · occasional weekends (such as Oct 3–4)',badges:['Craft and Tinker','Create and Innovate','Maker skills'],summary:'Important age limit: none of the Learning Lab machines—including sewing and 3D equipment—may be used by girls age 13 or younger. Machine access is therefore only an option for participants age 14+.',why:'The library may be able to arrange a lecture or demonstration for the troop, although a hands-on workshop is harder to offer because of the machine age restriction. Confirm the date, group capacity, content, and which badge steps the session could support.',url:'https://www.gwinnettpl.org/learninglabs/',source:'Hamilton Mill Library staff update'},
+      {id:'cool-people-sew',icon:'🪡',accent:'#d86582',tint:'#fff0f4',title:'Cool People Sew: Kids Sewing Field Trip',place:'Cool People Sew · Duluth',area:'gwinnett',type:'art',levels:['daisy','junior','cadette'],status:'ongoing',statusText:'Ages 6+',price:25,priceText:'Classes from $25 · parties from $250',date:'Schedule a class or private group party',badges:['Craft and Tinker','Create and Innovate','Maker skills','Independence'],summary:'Hands-on sewing for children age 6 and older in a school-like learning setting or party format. Beginner programs teach machine basics and guide each child through a finished project; no prior experience is required.',why:'A practical sewing option for all three troop levels. Ask about troop capacity, the age range in one session, project choices, supplies, total group price, and whether the lesson can be tailored to specific badge requirements.',url:'https://coolpeoplesew.com/pages/learn-to-sew-with-us-kids',source:'Cool People Sew + age note provided by organizer'},
+      {id:'artistea',icon:'🧸',accent:'#a85c8d',tint:'#faeff8',title:'Artistea: Sewing + Figurine Painting',place:'Artistea · Duluth',area:'gwinnett',type:'art',levels:['daisy','junior','cadette'],status:'ongoing',statusText:'Worked well for age 5',price:30,priceText:'$8–30 projects · teddy sewing $30',date:'Contact Artistea about a troop workshop',badges:['Craft and Tinker','Create and Innovate','Art and Design','Maker skills'],summary:'Choose a hands-on teddy-bear sewing project or figurine painting. A firsthand visit with a 5-year-old went well. The sewing activity includes selecting fabric, tracing a pattern, pinning, simple stitching, stuffing, and adding the finishing details.',why:'A flexible creative option for all three troop levels and a good possible match for Craft and Tinker, Create and Innovate, or Art and Design steps. Confirm troop capacity, instructor support, reservations, and whether the selected project works for the group’s full age range and exact badge requirements. Food and drinks are sold onsite; ask about allergens if the troop plans to order.',url:'https://artistea.shop/workshop',source:'Official Artistea page + firsthand visit'},
+      {id:'gscon',icon:'🌊',accent:'#1595b6',tint:'#e8f8fc',title:'GSCon 2026: Making Waves',place:'Atlanta Metropolitan State College · Atlanta',area:'metro',type:'multi',levels:['daisy','brownie','junior','cadette'],status:'confirmed',statusText:'Confirmed',price:0,priceText:'Open registration—check price',date:'Sep 19, 2026 · 12–4',badges:['Program sampler','Leadership','Fun patch'],summary:'Hands-on activities and partner tables for all levels, plus troop-leader resources and a fun patch.',why:'Good scouting-year kickoff for discovering more badge programs, although it is farther from Buford.',url:'https://www.girlscoutsatl.org/en/sf-events-repository/2026/girl-scout-con-2026.html',source:'Girl Scouts ATL'},
+      {id:'hunger-101',icon:'🥫',accent:'#d88732',tint:'#fff3e5',title:'Hunger 101 Patch Program',place:'Virtual or Atlanta Community Food Bank · College Park',area:'metro',type:'civics',levels:['daisy','brownie','junior','cadette'],status:'confirmed',statusText:'Confirmed',price:99,priceText:'Check registration',date:'Oct 10, 2026 · times vary',badges:['Hunger 101 Patch','Community service','Food security'],summary:'Choose a short virtual level session or an all-level in-person experience at the Atlanta Community Food Bank.',why:'Girls receive the Hunger 101 patch. This is a patch program—not a national Girl Scout badge—and it conflicts with Junior Badge Frenzy.',url:'https://www.girlscoutsatl.org/en/sf-events-repository/2026/hunger-101-patch-program---atlanta-community-food-bank.html',source:'Girl Scouts ATL'},
+      {id:'stem-panel',icon:'🔬',accent:'#6e62b5',tint:'#f0eefb',title:'STEM Career Panel',place:'Online · Virtual',area:'virtual',type:'multi',levels:['daisy','brownie','junior','cadette'],status:'confirmed',statusText:'Registration opens soon',price:99,priceText:'Check registration',date:'Nov 2, 2026 · 6–7 PM',badges:['STEM Career Exploration','Career exploration','STEM'],summary:'Girls meet STEM professionals and learn about their education, work, and career paths.',why:'Official badge pathway for all three levels. Attend two virtual career panels and complete the age-level worksheet to earn the badge.',url:'https://www.girlscoutsatl.org/en/sf-events-repository/2026/stem-career-panel0.html',source:'Girl Scouts ATL'},
+      {id:'rock-climbing',icon:'🧗‍♀️',accent:'#4d8a62',tint:'#ebf5ee',title:'Get Climbing Outside! Rock Climbing Clinic',place:'Cherokee Rock Village · Leesburg, Alabama',area:'destination',type:'outdoors',levels:['junior','cadette'],status:'confirmed',statusText:'Confirmed',price:99,priceText:'Check registration · badge separate',date:'Nov 7, 2026 · 10–4',badges:['Junior Climbing Adventure','Cadette Climbing Adventure'],summary:'Beginner-friendly outdoor climbing clinic with technical equipment provided; bring lunch, snacks, and water.',why:'Completes the level-appropriate official Climbing Adventure badge requirements. The physical badge must be purchased separately.',url:'https://www.girlscoutsatl.org/en/sf-events-repository/2026/get-climbing-outside--rock-climbing-clinic--nov-2026-.html',source:'Girl Scouts ATL'},
+      {id:'junior-musician',icon:'🎸',accent:'#b85b8c',tint:'#fbeef5',title:'Junior Musician Badge Workshop',place:'School of Rock East Cobb · Marietta',area:'metro',type:'art',levels:['junior'],status:'confirmed',statusText:'Confirmed',price:99,priceText:'Check registration',date:'Nov 14, 2026 · 3–5 PM',badges:['Junior Musician'],summary:'Hands-on music workshop where Juniors explore instruments, rhythm, performance, and how musicians work together.',why:'Activities align with the official Junior Musician badge. Confirm whether every requirement and the physical badge are included.',url:'https://www.girlscoutsatl.org/en/sf-events-repository/2026/sorec-x-girl-scouts---junior-music-badge-workshop---school-of-ro.html',source:'Girl Scouts ATL'},
+      {id:'craft-tinker',icon:'🛠️',accent:'#e8737c',tint:'#fff0f1',title:'Craft & Tinker Workshop',place:'Children’s Museum of Atlanta · Downtown Atlanta',area:'metro',type:'art',levels:['daisy','brownie'],status:'confirmed',statusText:'Confirmed',price:28,priceText:'$27.95/scout · $17.95/adult',date:'Nov 14–15, 2026 · 9:30–4',badges:['Craft and Tinker','Fun patch','Certificate'],summary:'A 45–60 minute badge-aligned workshop plus two hours of museum play; a fun patch and certificate are included.',why:'Good Daisy maker outing, but the listing does not clearly promise completion of every official badge requirement.',url:'https://www.girlscoutsatl.org/en/sf-events-repository/2026/craft-and-tinker-workshop-at-children-s-museum-of-atlanta-0.html',source:'Girl Scouts ATL'},
+      {id:'songs-smores',icon:'🔥',accent:'#b56a2e',tint:'#fff1e5',title:'Songs & S’mores—Mine and Me',place:'Camp Meriwether · Luthersville',area:'destination',type:'outdoors',levels:['brownie','junior','cadette'],status:'confirmed',statusText:'Confirmed',price:130,priceText:'$130/girl · $90/adult',date:'Sep 18–20, 2026',badges:['Junior Camper','Cadette Primitive Camper','Outdoor skills'],summary:'Two-night cabin weekend with four meals, songs, s’mores, camp activities, and adult participation.',why:'Connects to Junior Camper and Cadette Primitive Camper. Treat it as a badge-supporting overnight unless the event confirms every requirement.',url:'https://www.girlscoutsatl.org/en/sf-events-repository/2026/outdoor/songs-and-s-mores---mine-and-me---cabin---camp-meriwether.html',source:'Girl Scouts ATL'},
+      {id:'fairy-magic',icon:'🧚',accent:'#77a642',tint:'#f1f7e7',title:'Fairy Magic—Troop and Me Day',place:'Camp Meriwether · Luthersville',area:'destination',type:'outdoors',levels:['daisy','brownie'],status:'confirmed',statusText:'Confirmed',price:80,priceText:'$80/girl · $35/adult',date:'Jan 30, 2027 · 9–5:30',badges:['Daisy Eco Learner','Daisy Trail Adventure','Outdoor skills'],summary:'Full camp day with lunch, supplies, themed activities, and an adult-assisted horse ride.',why:'Official connections to Daisy Eco Learner and Daisy Trail Adventure; confirm whether any remaining badge steps are needed.',url:'https://www.girlscoutsatl.org/en/sf-events-repository/2027/outdoor/fairymagic-troopandme-dayonly-campmeriwether.html',source:'Girl Scouts ATL'}
+    ];
+    const EARNING = {
+      hotspot:['Possible badge steps','steps'], 'painting-party-2026':['Possible badge steps','steps'], aquarium:['Possible badge steps','steps'], 'camp-gwinnett':['Possible badge steps','steps'], gehc:['Possible badge steps','steps'], 'day-as-droplet':['Possible badge steps','steps'], 'hamilton-mill-pantry':['Service + possible badge steps','steps'],
+      virtual:['Varies by event','steps'], 'inside-government':['Official badge program','official'], 'atlanta-united':['Fun outing / patch','fun'], 'junior-frenzy':['Completes official badges','official'],
+      gladiators:['Fun patch / outing','fun'], 'cnc-programs':['Official badge work','official'], 'cnc-nights':['Outdoor skills / fun event','fun'], sewing:['Possible badge steps','steps'], 'cool-people-sew':['Possible badge steps','steps'], artistea:['Possible badge steps','steps'], gscon:['Fun patch / sampler','fun'],
+      'hunger-101':['Fun / council patch','fun'], 'stem-panel':['Official badge pathway','official'], 'rock-climbing':['Completes official badge','official'], 'junior-musician':['Official badge work','official'], 'craft-tinker':['Badge steps + fun patch','steps'], 'songs-smores':['Official badge connections','steps'], 'fairy-magic':['Official badge connections','steps']
+    };
+    const BROWNIE_ONLY_BADGES = new Set(['Outdoor Art Creator','Eco Friend','Potter','Fair Play']);
+
+    let activeLevel='all';
+    const saved=new Set(JSON.parse(localStorage.getItem('gs-trip-saves')||'[]'));
+    const $=s=>document.querySelector(s);
+    const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    const LEVEL_NAMES={daisy:'Daisy · K–1',junior:'Junior · Grades 4–5',cadette:'Cadette · Grades 6–8'};
+    function badgeCount(level){return BADGE_CATALOG[level].filter(g=>!g.award).reduce((n,g)=>n+g.badges.length,0)}
+    function catalogMarkup(level){const groups=BADGE_CATALOG[level];const extra=level==='daisy'?' + 10 Daisy petals':'';return `<section class="catalog-level"><div class="catalog-level-head"><h3>${esc(LEVEL_NAMES[level])}</h3><span>${badgeCount(level)} badges${extra}</span></div><div class="badge-groups">${groups.map(g=>`<div class="badge-group ${g.award?'awards':''}"><h4>${esc(g.category)}</h4><div class="badge-group-list">${g.badges.map(b=>`<span class="badge-chip">${esc(b)}</span>`).join('')}</div></div>`).join('')}</div></section>`}
+    function renderBadges(){const l=LEVELS[activeLevel];$('#levelNoteTitle').textContent=l.noteTitle;$('#levelNoteCopy').textContent=l.noteCopy;$('#levelTitle').textContent='Complete official badge catalog';$('#levelCopy').textContent='Daisy, Junior, and Cadette national proficiency badges—organized by theme';$('#badgeCloud').innerHTML=['daisy','junior','cadette'].map(catalogMarkup).join('')}
+    function withinCost(t,filter){if(filter==='all')return true;if(filter==='free')return t.price===0;return t.price<=Number(filter)}
+    function filtered(){const q=$('#search').value.trim().toLowerCase(),area=$('#area').value,type=$('#type').value,cost=$('#cost').value,only=$('#savedOnly').classList.contains('active');return trips.filter(t=>(activeLevel==='all'||t.levels.includes(activeLevel))&&(area==='all'||t.area===area)&&(type==='all'||t.type===type)&&withinCost(t,cost)&&(!only||saved.has(t.id))&&(!q||[t.title,t.place,t.summary,t.why,...t.badges].join(' ').toLowerCase().includes(q)))}
+    function card(t){const earning=EARNING[t.id]||['Possible badge steps','steps'];const badges=t.badges.filter(b=>!BROWNIE_ONLY_BADGES.has(b));return `<article class="trip-card" style="--accent:${t.accent};--tint:${t.tint}"><div class="card-top"><div class="icon">${t.icon}</div><button class="save ${saved.has(t.id)?'saved':''}" data-save="${t.id}" aria-label="${saved.has(t.id)?'Remove from':'Save to'} plan">${saved.has(t.id)?'♥':'♡'}</button></div><span class="status ${t.status}"><i class="dot"></i>${esc(t.statusText)}</span><h3>${esc(t.title)}</h3><div class="place">${esc(t.place)}</div><span class="earn-type ${earning[1]}">${esc(earning[0])}</span><div class="meta"><span class="pill">📅 ${esc(t.date)}</span><span class="pill">💵 ${esc(t.priceText)}</span></div><p>${esc(t.summary)}</p><p class="why"><strong>Badge fit:</strong> ${esc(t.why)}</p><div class="meta">${badges.slice(0,4).map(b=>`<span class="pill">${esc(b)}</span>`).join('')}</div><div class="card-actions"><a href="${esc(t.url)}" target="_blank" rel="noopener">Open details ↗</a><small>${esc(t.source)}</small></div></article>`}
+    function render(){renderBadges();const list=filtered();$('#resultCount').textContent=`Showing ${list.length} of ${trips.length} ideas`;$('#tripGrid').innerHTML=list.length?list.map(card).join(''):'<div class="empty"><strong>No trips match those filters.</strong><br>Try a higher budget, another area, or clear the search.</div>';document.querySelectorAll('[data-save]').forEach(b=>b.addEventListener('click',()=>{saved.has(b.dataset.save)?saved.delete(b.dataset.save):saved.add(b.dataset.save);localStorage.setItem('gs-trip-saves',JSON.stringify([...saved]));render()}))}
+    function renderReview(){const list=trips.filter(t=>saved.has(t.id));$('#reviewList').innerHTML=list.length?list.map(t=>`<div class="review-row"><div class="mini-icon">${t.icon}</div><div><strong>${esc(t.title)}</strong><small>${esc(t.place)}</small></div><div class="review-meta"><strong>${esc(t.date)}</strong><small>${esc(t.priceText)}</small></div><div class="review-meta"><strong>${esc(t.badges.slice(0,2).join(' + '))}</strong><small>Badge connection</small></div></div>`).join(''):'<div class="empty"><strong>Your shortlist is empty.</strong><br>Select the heart on any trip card, then return here to compare choices.</div>'}
+    function setPage(page){const catalog=page==='catalog';document.body.classList.toggle('catalog-open',catalog);document.querySelectorAll('.page-tab').forEach(b=>{const active=b.dataset.page===page;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active))});window.scrollTo({top:document.querySelector('main').offsetTop-12,behavior:'smooth'})}
+    document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>setPage(b.dataset.page)));
+    document.querySelectorAll('.grade-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.grade-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeLevel=b.dataset.level;render()}));
+    ['search','area','type','cost'].forEach(id=>$('#'+id).addEventListener(id==='search'?'input':'change',render));
+    $('#savedOnly').addEventListener('click',e=>{e.currentTarget.classList.toggle('active');e.currentTarget.textContent=e.currentTarget.classList.contains('active')?'♥ Saved trips':'♡ Saved only';render()});
+    $('#reviewPlan').addEventListener('click',()=>{renderReview();$('#reviewDialog').showModal()});
+    $('#closeReview').addEventListener('click',()=>$('#reviewDialog').close());
+    $('#reviewDialog').addEventListener('click',e=>{if(e.target===$('#reviewDialog'))$('#reviewDialog').close()});
+    $('#clearSaved').addEventListener('click',()=>{if(confirm('Remove every trip from the saved shortlist?')){saved.clear();localStorage.setItem('gs-trip-saves','[]');renderReview();render()}});
+    $('#presentMode').addEventListener('click',e=>{document.body.classList.toggle('presenting');const on=document.body.classList.contains('presenting');e.currentTarget.textContent=on?'× Exit presentation':'▣ Presentation view';if(on)window.scrollTo({top:0,behavior:'smooth'})});
+    $('#printPlan').addEventListener('click',()=>window.print());
+    $('#printReview').addEventListener('click',()=>window.print());
+    render();
+  </script>
+</body>
+</html>
